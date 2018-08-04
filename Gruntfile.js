@@ -8,7 +8,7 @@ module.exports = function (grunt) {
         distdir: "dist",
         srcdir: "src",
         builddir: ".work/.tmp",
-        name: grunt.file.readJSON("package.json").name || "ovh-angular-q-allSettled", // module name
+        name: "ovh-angular-q-allSettled", // module name
 
         // Clean
         clean: {
@@ -62,19 +62,6 @@ module.exports = function (grunt) {
                     "<%= distdir %>/<%= name %>.min.js": ["<%= builddir %>/<%= name %>.js"]
                 }
             }
-        },
-
-        // JS Check
-        jshint: {
-            options: {
-                jshintrc: ".jshintrc",
-                reporter: require("jshint-stylish")
-            },
-            js: [
-                "<%= srcdir %>/*.js",
-                "<%= srcdir %>/*/*.js",
-                "!<%= srcdir %>/**/*.spec.js"
-            ]
         },
 
         // Check complexity
@@ -141,7 +128,6 @@ module.exports = function (grunt) {
     grunt.registerTask("test", function () {
         grunt.task.run([
             "clean",
-            "jshint",
             "eslint",
             "complexity",
             "karma"
